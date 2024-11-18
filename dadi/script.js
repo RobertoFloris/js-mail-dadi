@@ -14,24 +14,34 @@
 */ 
 
 const numeroPc = Math.ceil(Math.random() * 6);
-const numeroUtente = parseInt(prompt("Inserisci un numero da 1 a 6"));
+let numeroUtente;
 let message;
+let isCorrect; // dichiaro la variabile ma non posso inizializzarla fuori dal ciclo
 
-if(numeroPc>numeroUtente){
-  message = 
-  `Il computer ha scelto ${numeroPc}.
-  Tu hai scelto ${numeroUtente}.
-  Hai perso.`;   
-} else if(numeroPc<numeroUtente){
-  message = 
-  `Il computer ha scelto ${numeroPc}.
-  Tu hai scelto ${numeroUtente}.
-  Hai vinto.`;   
-} else{
-  message = 
-  `Il computer ha scelto ${numeroPc}.
-  Tu hai scelto ${numeroUtente}.
-  Pareggio`; 
-}
+do {
+  isCorrect=true; //All'inizio di ogni ciclo la inizializzo a true, altrimenti se dovesse cambiare rimarrebbe false
+  numeroUtente = parseInt(prompt("Inserisci un numero da 1 a 6"));
 
-console.log(message);
+  if(isNaN(numeroUtente) || numeroUtente < 1 || numeroUtente > 6){
+    message = "Non hai scelto un numero valido. Riprova."
+    isCorrect=false;
+   } else if(numeroPc>numeroUtente){
+    message = 
+    `Il computer ha scelto ${numeroPc}.
+    Tu hai scelto ${numeroUtente}.
+    Hai perso.`;   
+  } else if(numeroPc<numeroUtente){
+    message = 
+    `Il computer ha scelto ${numeroPc}.
+    Tu hai scelto ${numeroUtente}.
+    Hai vinto.`;   
+  } else{
+    message = 
+    `Il computer ha scelto ${numeroPc}.
+    Tu hai scelto ${numeroUtente}.
+    Pareggio`; 
+  }
+
+  console.log(message);
+
+} while(!isCorrect);
