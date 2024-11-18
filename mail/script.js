@@ -28,15 +28,21 @@ const emailAutorizzate = [
 
 let emailUtente='';
 let message;
+let isPresent=false;  //inizialmente isPresent controlla se la @ è presente nella stringa inserita, successivamente controlla se la parola inserita è presente nella lista
 
-emailUtente=prompt("Inserisci la tua email");
+do{
+  emailUtente=prompt("Inserisci la tua email");
+  if(!emailUtente.includes("@") ){
+    message="Mail non valida";
+  } else if(!emailAutorizzate.includes(emailUtente)){
+    message="Non puoi accedere";
+  } else {
+    message="Puoi accedere";
+    isPresent=true;
+  }
 
-if(emailAutorizzate.includes(emailUtente)){
-  message="Puoi accedere"
-} else {
-  message="Non puoi accedere"
-}
+  console.log(message);
 
-console.log(message)
+}while (!isPresent)
 
 
